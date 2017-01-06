@@ -173,14 +173,14 @@ export default class Picker extends React.Component {
     this.scrollTop = scrollTop
   }
 
-  handleSearch(emojis) {
+  handleSearch(emojis, value) {
     SEARCH_CATEGORY.emojis = emojis
 
     for (let i = 0, l = CATEGORIES.length; i < l; i++) {
       let component = this.refs[`category-${i}`]
 
       if (component && component.props.name != 'Search') {
-        let display = emojis ? 'none' : null
+        let display = emojis && !value ? 'none' : null
         component.updateDisplay(display)
       }
     }
