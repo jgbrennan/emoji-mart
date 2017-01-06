@@ -1,4 +1,5 @@
 import data from '../../data'
+import ranges from './ranges';
 
 let blankDataURL;
 let canvas;
@@ -24,6 +25,15 @@ function clearCanvas() {
     blankDataURL = canvas.toDataURL()
   }
   context.clearRect(0, 0, canvas.width, canvas.height)
+}
+
+function isSupportedEmoji(unified) {
+  let unifiedAsNum = parseInt(unified, 16);
+  let isSupported = ranges.filter(range => {
+    return (range.length === 1 && range[0] === unified)
+     || (unifiedAsNum >= parseInt(range[0], 16) && unifiedAsNum <= parseInt(range[1], 16));
+  });
+  return isSupported.length > 0;
 }
 
 function nativeIsSupported() {
@@ -145,4 +155,4 @@ function deepMerge(a, b) {
   return o
 }
 
-export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative, nativeIsSupported }
+export { getData, getSanitizedData, intersect, deepMerge, unifiedToNative, nativeIsSupported, isSupportedEmoji }
