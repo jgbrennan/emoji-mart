@@ -1,6 +1,7 @@
 import React from 'react'
 import data from '../../data'
 import supportedEmojis from '../utils/filtered-emojis'
+import { nativeIsSupported } from '../utils';
 
 import { getData, getSanitizedData, unifiedToNative } from '../utils'
 
@@ -83,7 +84,7 @@ export default class Emoji extends React.Component {
       }
     }
 
-    if (supportedEmojis[unified]) {
+    if (supportedEmojis[unified] && nativeIsSupported(this.props.emoji, this.props.skin, this.props.sheetURL)) {
       return (<span
         onClick={this.handleClick.bind(this)}
         onMouseEnter={this.handleOver.bind(this)}

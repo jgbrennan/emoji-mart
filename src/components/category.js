@@ -1,7 +1,6 @@
 import React from 'react'
 
 import frequently from '../utils/frequently'
-import { nativeIsSupported } from '../utils';
 import { Emoji } from '.'
 
 export default class Category extends React.Component {
@@ -125,9 +124,6 @@ export default class Category extends React.Component {
       </div>
 
       {emojis && emojis.map((emoji) => {
-        if (excludeUnsupportedNativeEmojis && !nativeIsSupported(emoji, emojiProps.skin, emojiProps.sheetURL)) {
-          return null
-        }
         return <Emoji
           key={emoji.id || emoji}
           emoji={emoji}

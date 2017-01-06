@@ -19,7 +19,7 @@ function unifiedToNative(unified) {
 function clearCanvas() {
   if (canvas === undefined) {
     canvas = document.createElement('canvas')
-    canvas.width = canvas.height = 2
+    canvas.width = canvas.height = 40
     context = canvas.getContext('2d')
     blankDataURL = canvas.toDataURL()
   }
@@ -32,7 +32,7 @@ function nativeIsSupported() {
     { native } = data
 
   clearCanvas()
-  context.fillText(native, 0, 0)
+  context.fillText(native, 20, 20)
   let emojiString1 = canvas.toDataURL()
   return emojiString1 !== blankDataURL;
 }
