@@ -29,11 +29,12 @@ function clearCanvas() {
 
 function isSupportedEmoji(unified) {
   let unifiedAsNum = parseInt(unified, 16);
-  let isSupported = ranges.filter(range => {
-    return (range.length === 1 && range[0] === unified)
-     || (unifiedAsNum >= parseInt(range[0], 16) && unifiedAsNum <= parseInt(range[1], 16));
-  });
-  return isSupported.length > 0;
+  for (let range of ranges) {
+    if ((range.length === 1 && range[0] === unified) || (unifiedAsNum >= range[0] && unifiedAsNum <= range[1])) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function nativeIsSupported() {
